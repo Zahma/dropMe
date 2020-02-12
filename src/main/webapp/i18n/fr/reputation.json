@@ -1,0 +1,25 @@
+{
+  "dropMeApp": {
+    "reputation": {
+      "home": {
+        "title": "Reputations",
+        "createLabel": "Créer un nouveau Reputation",
+        "createOrEditLabel": "Créer ou éditer un Reputation",
+        "notFound": "Aucun Reputation trouvé"
+      },
+      "created": "Un nouveau Reputation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Reputation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Reputation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Reputation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Reputation"
+      },
+      "rate": "Rate",
+      "comment": "Comment",
+      "transporterAccount": "Transporter Account",
+      "clientAccount": "Client Account"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transporterAccount">
+            <h2><span jhiTranslate="dropMeApp.transporterAccount.detail.title">Transporter Account</span> {{ transporterAccount.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.name">Name</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.patent">Patent</span></dt>
+                <dd>
+                    <div *ngIf="transporterAccount.patent">
+                        <a (click)="openFile(transporterAccount.patentContentType!, transporterAccount.patent)" jhiTranslate="entity.action.open">open</a>
+                        {{ transporterAccount.patentContentType }}, {{ byteSize(transporterAccount.patent) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.managerFName">Manager F Name</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.managerFName }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.managerLName">Manager L Name</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.managerLName }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.balance">Balance</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.balance }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.insurance">Insurance</span></dt>
+                <dd>
+                    <div *ngIf="transporterAccount.insurance">
+                        <a (click)="openFile(transporterAccount.insuranceContentType!, transporterAccount.insurance)" jhiTranslate="entity.action.open">open</a>
+                        {{ transporterAccount.insuranceContentType }}, {{ byteSize(transporterAccount.insurance) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.referal">Referal</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.referal }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.referedBy">Refered By</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.referedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ transporterAccount.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.transporterAccount.user">User</span></dt>
+                <dd>
+                    {{ transporterAccount.userLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transporter-account', transporterAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

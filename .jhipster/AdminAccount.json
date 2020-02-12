@@ -1,0 +1,31 @@
+{
+    "name": "AdminAccount",
+    "fields": [
+        {
+            "fieldName": "role",
+            "fieldType": "ERole",
+            "fieldValues": "SUPERADMIN,ADMIN,MODERATOR"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "adminAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20200212173500",
+    "entityTableName": "admin_account",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

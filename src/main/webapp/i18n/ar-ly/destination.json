@@ -1,0 +1,23 @@
+{
+  "dropMeApp": {
+    "destination": {
+      "home": {
+        "title": "Destinations",
+        "createLabel": "Create a new Destination",
+        "createOrEditLabel": "Create or edit a Destination",
+        "notFound": "No Destinations found"
+      },
+      "created": "A new Destination is created with identifier {{ param }}",
+      "updated": "A Destination is updated with identifier {{ param }}",
+      "deleted": "A Destination is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Destination {{ id }}?"
+      },
+      "detail": {
+        "title": "Destination"
+      },
+      "location": "Location",
+      "trip": "Trip"
+    }
+  }
+}

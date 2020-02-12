@@ -1,0 +1,32 @@
+{
+    "name": "Chat",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "conversation",
+            "otherEntityRelationshipName": "chat",
+            "relationshipName": "conversation",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200212172800",
+    "entityTableName": "chat",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

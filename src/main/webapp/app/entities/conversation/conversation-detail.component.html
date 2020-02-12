@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="conversation">
+            <h2><span jhiTranslate="dropMeApp.conversation.detail.title">Conversation</span> {{ conversation.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dropMeApp.conversation.trip">Trip</span></dt>
+                <dd>
+                    <div *ngIf="conversation.tripId">
+                        <a [routerLink]="['/trip', conversation.tripId, 'view']">{{ conversation.tripId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.conversation.truck">Truck</span></dt>
+                <dd>
+                    <div *ngIf="conversation.truckId">
+                        <a [routerLink]="['/truck', conversation.truckId, 'view']">{{ conversation.truckId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/conversation', conversation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

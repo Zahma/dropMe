@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Trip.
+    -->
+    <changeSet id="20200212172700-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="origin_id"
+                                 baseTableName="trip"
+                                 constraintName="fk_trip_origin_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="origin"/>
+
+        <addForeignKeyConstraint baseColumnNames="destination_id"
+                                 baseTableName="trip"
+                                 constraintName="fk_trip_destination_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="destination"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_account_id"
+                                 baseTableName="trip"
+                                 constraintName="fk_trip_client_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client_account"/>
+
+    </changeSet>
+</databaseChangeLog>

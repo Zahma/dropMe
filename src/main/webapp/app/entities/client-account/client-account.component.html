@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="dropMeApp.clientAccount.home.title">Client Accounts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-client-account" [routerLink]="['/client-account/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="dropMeApp.clientAccount.home.createLabel">
+            Create a new Client Account
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="clientAccounts?.length === 0">
+        <span jhiTranslate="dropMeApp.clientAccount.home.notFound">No clientAccounts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="clientAccounts?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="firstName"><span jhiTranslate="dropMeApp.clientAccount.firstName">First Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lastName"><span jhiTranslate="dropMeApp.clientAccount.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phone"><span jhiTranslate="dropMeApp.clientAccount.phone">Phone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="referredBy"><span jhiTranslate="dropMeApp.clientAccount.referredBy">Referred By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="referal"><span jhiTranslate="dropMeApp.clientAccount.referal">Referal</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="activated"><span jhiTranslate="dropMeApp.clientAccount.activated">Activated</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userLogin"><span jhiTranslate="dropMeApp.clientAccount.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let clientAccount of clientAccounts ;trackBy: trackId">
+                    <td><a [routerLink]="['/client-account', clientAccount.id, 'view']">{{ clientAccount.id }}</a></td>
+                    <td>{{ clientAccount.firstName }}</td>
+                    <td>{{ clientAccount.lastName }}</td>
+                    <td>{{ clientAccount.phone }}</td>
+                    <td>{{ clientAccount.referredBy }}</td>
+                    <td>{{ clientAccount.referal }}</td>
+                    <td>{{ clientAccount.activated }}</td>
+                    <td>
+                        {{ clientAccount.userLogin }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/client-account', clientAccount.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/client-account', clientAccount.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(clientAccount)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="clientAccounts?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

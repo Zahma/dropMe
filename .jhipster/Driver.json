@@ -1,0 +1,36 @@
+{
+    "name": "Driver",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "currentCoordinate",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "truck",
+            "otherEntityRelationshipName": "driver",
+            "relationshipName": "truck",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200212173000",
+    "entityTableName": "driver",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,11 @@
+{
+  "dropMeApp": {
+    "ETripState": {
+      "null": "",
+      "FINISHED": "FINISHED",
+      "ACTIVATED": "ACTIVATED",
+      "IN_PROGRESS": "IN_PROGRESS",
+      "MATCHED": "MATCHED"
+    }
+  }
+}

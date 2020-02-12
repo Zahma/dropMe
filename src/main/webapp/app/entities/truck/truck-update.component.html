@@ -1,0 +1,94 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-truck-heading" jhiTranslate="dropMeApp.truck.home.createOrEditLabel">Create or edit a Truck</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.plateNumber" for="field_plateNumber">Plate Number</label>
+                    <input type="text" class="form-control" name="plateNumber" id="field_plateNumber"
+                           formControlName="plateNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.conteneurPlateNumber" for="field_conteneurPlateNumber">Conteneur Plate Number</label>
+                    <input type="text" class="form-control" name="conteneurPlateNumber" id="field_conteneurPlateNumber"
+                           formControlName="conteneurPlateNumber"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.type" for="field_type">Type</label>
+                    <select class="form-control" name="type" formControlName="type" id="field_type">
+                        <option value="DOMESTIC">{{ 'dropMeApp.ETruckType.DOMESTIC' | translate }}</option>
+                        <option value="EXPORT">{{ 'dropMeApp.ETruckType.EXPORT' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.width" for="field_width">Width</label>
+                    <input type="number" class="form-control" name="width" id="field_width"
+                           formControlName="width"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.height" for="field_height">Height</label>
+                    <input type="number" class="form-control" name="height" id="field_height"
+                           formControlName="height"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.length" for="field_length">Length</label>
+                    <input type="number" class="form-control" name="length" id="field_length"
+                           formControlName="length"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.maxWeight" for="field_maxWeight">Max Weight</label>
+                    <input type="number" class="form-control" name="maxWeight" id="field_maxWeight"
+                           formControlName="maxWeight"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.driver" for="field_driver">Driver</label>
+                    <select class="form-control" id="field_driver" name="driver" formControlName="driverId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="driverOption.id" *ngFor="let driverOption of drivers; trackBy: trackById">{{ driverOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.trip" for="field_trip">Trip</label>
+                    <select class="form-control" id="field_trip" name="trip" formControlName="tripId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tripOption.id" *ngFor="let tripOption of trips; trackBy: trackById">{{ tripOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="dropMeApp.truck.transporterAccount" for="field_transporterAccount">Transporter Account</label>
+                    <select class="form-control" id="field_transporterAccount" name="transporterAccount" formControlName="transporterAccountId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="transporterAccountOption.id" *ngFor="let transporterAccountOption of transporteraccounts; trackBy: trackById">{{ transporterAccountOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

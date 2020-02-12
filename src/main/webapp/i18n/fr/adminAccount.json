@@ -1,0 +1,23 @@
+{
+  "dropMeApp": {
+    "adminAccount": {
+      "home": {
+        "title": "AdminAccounts",
+        "createLabel": "Créer un nouveau Admin Account",
+        "createOrEditLabel": "Créer ou éditer un Admin Account",
+        "notFound": "Aucun Admin Account trouvé"
+      },
+      "created": "Un nouveau Admin Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Admin Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Admin Account avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Admin Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Admin Account"
+      },
+      "role": "Role",
+      "user": "User"
+    }
+  }
+}

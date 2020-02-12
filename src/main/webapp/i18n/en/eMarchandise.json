@@ -1,0 +1,11 @@
+{
+  "dropMeApp": {
+    "EMarchandise": {
+      "null": "",
+      "VEGETABLES": "VEGETABLES",
+      "RAW_MATERIAL": "RAW_MATERIAL",
+      "FISH": "FISH",
+      "OTHER": "OTHER"
+    }
+  }
+}

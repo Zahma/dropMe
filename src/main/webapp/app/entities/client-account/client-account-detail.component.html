@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="clientAccount">
+            <h2><span jhiTranslate="dropMeApp.clientAccount.detail.title">Client Account</span> {{ clientAccount.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dropMeApp.clientAccount.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{ clientAccount.firstName }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ clientAccount.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.phone">Phone</span></dt>
+                <dd>
+                    <span>{{ clientAccount.phone }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.referredBy">Referred By</span></dt>
+                <dd>
+                    <span>{{ clientAccount.referredBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.referal">Referal</span></dt>
+                <dd>
+                    <span>{{ clientAccount.referal }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.activated">Activated</span></dt>
+                <dd>
+                    <span>{{ clientAccount.activated }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.clientAccount.user">User</span></dt>
+                <dd>
+                    {{ clientAccount.userLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/client-account', clientAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
