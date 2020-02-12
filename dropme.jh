@@ -1,0 +1,160 @@
+entity TransporterAccount {
+	name String,
+    phone String,
+    patent Blob,
+    managerFName String,
+    managerLName String,
+    balance Integer,
+    insurance Blob,
+    referal String,
+    referedBy String,
+    activated Boolean
+}
+
+entity Reputation {
+	// Many to One with Provider
+    // Many to One with Demander
+	// Trip Load
+    // Use ETA to know if you can comment, and to close te comment
+	rate Integer required,
+    comment String
+}
+
+entity ClientAccount {
+    firstName String,
+    lastName String,
+    phone String,
+	id String, // (optional Id for physical person, RC for company)
+    referredBy String,
+    referal String,
+    activated Boolean
+}
+
+entity Origin {
+// related one to one with Location
+}
+
+entity Destination {
+// related one to one with Location
+}
+
+entity Trip {
+    isFull Boolean required, //
+    width Integer,
+    height Integer,
+    length Integer,
+    weight Integer,
+    marchandise EMarchandise required, // type of marchandise
+    etd ZonedDateTime required,
+    description String, // What are you transporting !
+    state ETripState, // Matched, Finised, In progress
+    eta ZonedDateTime,
+	distance Integer required
+}
+
+enum EMarchandise {
+	VEGETABLES,
+    RAW_MATERIAL,
+    FISH,
+    OTHER
+}
+
+enum ETripState {
+	FINISHED,
+	ACTIVATED,
+    IN_PROGRESS,
+    MATCHED
+}
+
+enum ETruckType {
+	DOMESTIC,
+    EXPORT
+}
+
+entity Chat {
+	// Trip Owner
+    // Truck Owner
+    text String,
+    date Instant
+}
+
+entity Truck {
+	plateNumber String,
+    conteneurPlateNumber String,
+    type ETruckType,
+    width Integer,
+    height Integer,
+    length Integer,    
+    maxWeight Integer
+}
+
+entity Driver {
+   // Relation one to one with truck
+   firstName String,
+   lastName String,
+   currentCoordinate String
+}
+
+entity Region {
+	regionName String
+}
+
+entity Country {
+	countryName String
+}
+
+
+entity Location {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity Conversation {
+
+}
+
+entity AdminAccount{
+	role ERole
+}
+
+enum ERole {
+	SUPERADMIN,
+    ADMIN,
+    MODERATOR
+}
+
+relationship OneToOne {
+    ClientAccount{user(login) required} to User,
+    TransporterAccount{user(login) required} to User,
+    AdminAccount{user(login) required} to User,
+	Location to Origin,
+    Location to Destination,
+    Country{region} to Region,
+	Location{country} to Country,
+    Trip to Origin,
+    Trip to Destination,
+  //  Load to Truck,
+    Truck to Driver,
+    Truck to Trip
+}
+
+relationship OneToMany {
+	TransporterAccount to Truck,
+    TransporterAccount to Reputation,
+    ClientAccount to Reputation,
+    ClientAccount to Trip,
+    Trip to Conversation,
+    Truck to Conversation,
+   // Load to Trip,
+    Conversation to Chat
+}
+
+paginate all with pagination
+
+dto all with mapstruct
+
+service all with serviceClass
+
+filter all
