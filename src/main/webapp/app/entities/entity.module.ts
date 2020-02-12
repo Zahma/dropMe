@@ -59,6 +59,26 @@ import { RouterModule } from '@angular/router';
       {
         path: 'admin-account',
         loadChildren: () => import('./admin-account/admin-account.module').then(m => m.DropMeAdminAccountModule)
+      },
+      {
+        path: 'department',
+        loadChildren: () => import('./department/department.module').then(m => m.DropMeDepartmentModule)
+      },
+      {
+        path: 'task',
+        loadChildren: () => import('./task/task.module').then(m => m.DropMeTaskModule)
+      },
+      {
+        path: 'employee',
+        loadChildren: () => import('./employee/employee.module').then(m => m.DropMeEmployeeModule)
+      },
+      {
+        path: 'job',
+        loadChildren: () => import('./job/job.module').then(m => m.DropMeJobModule)
+      },
+      {
+        path: 'job-history',
+        loadChildren: () => import('./job-history/job-history.module').then(m => m.DropMeJobHistoryModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

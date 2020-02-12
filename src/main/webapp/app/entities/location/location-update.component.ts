@@ -8,14 +8,8 @@ import { map } from 'rxjs/operators';
 
 import { ILocation, Location } from 'app/shared/model/location.model';
 import { LocationService } from './location.service';
-import { IOrigin } from 'app/shared/model/origin.model';
-import { OriginService } from 'app/entities/origin/origin.service';
-import { IDestination } from 'app/shared/model/destination.model';
-import { DestinationService } from 'app/entities/destination/destination.service';
 import { ICountry } from 'app/shared/model/country.model';
 import { CountryService } from 'app/entities/country/country.service';
-
-type SelectableEntity = IOrigin | IDestination | ICountry;
 
 @Component({
   selector: 'jhi-location-update',
@@ -23,8 +17,6 @@ type SelectableEntity = IOrigin | IDestination | ICountry;
 })
 export class LocationUpdateComponent implements OnInit {
   isSaving = false;
-  origins: IOrigin[] = [];
-  destinations: IDestination[] = [];
   countries: ICountry[] = [];
 
   editForm = this.fb.group({
@@ -33,15 +25,11 @@ export class LocationUpdateComponent implements OnInit {
     postalCode: [],
     city: [],
     stateProvince: [],
-    originId: [],
-    destinationId: [],
-    countryId: []
+    country: []
   });
 
   constructor(
     protected locationService: LocationService,
-    protected originService: OriginService,
-    protected destinationService: DestinationService,
     protected countryService: CountryService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -51,63 +39,19 @@ export class LocationUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ location }) => {
       this.updateForm(location);
 
-      this.originService
-        .query({ 'locationId.specified': 'false' })
-        .pipe(
-          map((res: HttpResponse<IOrigin[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IOrigin[]) => {
-          if (!location.originId) {
-            this.origins = resBody;
-          } else {
-            this.originService
-              .find(location.originId)
-              .pipe(
-                map((subRes: HttpResponse<IOrigin>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IOrigin[]) => (this.origins = concatRes));
-          }
-        });
-
-      this.destinationService
-        .query({ 'locationId.specified': 'false' })
-        .pipe(
-          map((res: HttpResponse<IDestination[]>) => {
-            return res.body || [];
-          })
-        )
-        .subscribe((resBody: IDestination[]) => {
-          if (!location.destinationId) {
-            this.destinations = resBody;
-          } else {
-            this.destinationService
-              .find(location.destinationId)
-              .pipe(
-                map((subRes: HttpResponse<IDestination>) => {
-                  return subRes.body ? [subRes.body].concat(resBody) : resBody;
-                })
-              )
-              .subscribe((concatRes: IDestination[]) => (this.destinations = concatRes));
-          }
-        });
-
       this.countryService
-        .query({ 'locationId.specified': 'false' })
+        .query({ filter: 'location-is-null' })
         .pipe(
           map((res: HttpResponse<ICountry[]>) => {
             return res.body || [];
           })
         )
         .subscribe((resBody: ICountry[]) => {
-          if (!location.countryId) {
+          if (!location.country || !location.country.id) {
             this.countries = resBody;
           } else {
             this.countryService
-              .find(location.countryId)
+              .find(location.country.id)
               .pipe(
                 map((subRes: HttpResponse<ICountry>) => {
                   return subRes.body ? [subRes.body].concat(resBody) : resBody;
@@ -126,9 +70,7 @@ export class LocationUpdateComponent implements OnInit {
       postalCode: location.postalCode,
       city: location.city,
       stateProvince: location.stateProvince,
-      originId: location.originId,
-      destinationId: location.destinationId,
-      countryId: location.countryId
+      country: location.country
     });
   }
 
@@ -154,9 +96,7 @@ export class LocationUpdateComponent implements OnInit {
       postalCode: this.editForm.get(['postalCode'])!.value,
       city: this.editForm.get(['city'])!.value,
       stateProvince: this.editForm.get(['stateProvince'])!.value,
-      originId: this.editForm.get(['originId'])!.value,
-      destinationId: this.editForm.get(['destinationId'])!.value,
-      countryId: this.editForm.get(['countryId'])!.value
+      country: this.editForm.get(['country'])!.value
     };
   }
 
@@ -176,7 +116,7 @@ export class LocationUpdateComponent implements OnInit {
     this.isSaving = false;
   }
 
-  trackById(index: number, item: SelectableEntity): any {
+  trackById(index: number, item: ICountry): any {
     return item.id;
   }
 }

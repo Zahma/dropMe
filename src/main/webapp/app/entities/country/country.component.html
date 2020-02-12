@@ -21,10 +21,10 @@
     <div class="table-responsive" id="entities" *ngIf="countries?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="countryName"><span jhiTranslate="dropMeApp.country.countryName">Country Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="regionId"><span jhiTranslate="dropMeApp.country.region">Region</span> <fa-icon icon="sort"></fa-icon></th>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="dropMeApp.country.countryName">Country Name</span></th>
+                    <th scope="col" ><span jhiTranslate="dropMeApp.country.region">Region</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,8 +33,8 @@
                     <td><a [routerLink]="['/country', country.id, 'view']">{{ country.id }}</a></td>
                     <td>{{ country.countryName }}</td>
                     <td>
-                        <div *ngIf="country.regionId">
-                            <a [routerLink]="['/region', country.regionId , 'view']" >{{ country.regionId }}</a>
+                        <div *ngIf="country.region">
+                            <a [routerLink]="['/region', country.region?.id, 'view']" >{{ country.region?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">
@@ -63,15 +63,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
-    <div *ngIf="countries?.length > 0">
-        <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-        </div>
-
-        <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
-        </div>
     </div>
 </div>

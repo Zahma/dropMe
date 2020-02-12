@@ -14,8 +14,8 @@
                 </dd>
                 <dt><span jhiTranslate="dropMeApp.country.region">Region</span></dt>
                 <dd>
-                    <div *ngIf="country.regionId">
-                        <a [routerLink]="['/region', country.regionId, 'view']">{{ country.regionId }}</a>
+                    <div *ngIf="country.region">
+                        <a [routerLink]="['/region', country.region?.id, 'view']">{{ country.region?.id }}</a>
                     </div>
                 </dd>
             </dl>

@@ -1,13 +1,15 @@
 package com.abrid.dropme.domain;
 
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
 
 /**
- * A Location.
+ * not an ignored comment
  */
+@ApiModel(description = "not an ignored comment")
 @Entity
 @Table(name = "location")
 public class Location implements Serializable {
@@ -29,14 +31,6 @@ public class Location implements Serializable {
 
     @Column(name = "state_province")
     private String stateProvince;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Origin origin;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Destination destination;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -101,32 +95,6 @@ public class Location implements Serializable {
 
     public void setStateProvince(String stateProvince) {
         this.stateProvince = stateProvince;
-    }
-
-    public Origin getOrigin() {
-        return origin;
-    }
-
-    public Location origin(Origin origin) {
-        this.origin = origin;
-        return this;
-    }
-
-    public void setOrigin(Origin origin) {
-        this.origin = origin;
-    }
-
-    public Destination getDestination() {
-        return destination;
-    }
-
-    public Location destination(Destination destination) {
-        this.destination = destination;
-        return this;
-    }
-
-    public void setDestination(Destination destination) {
-        this.destination = destination;
     }
 
     public Country getCountry() {
