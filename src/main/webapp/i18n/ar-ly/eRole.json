@@ -1,0 +1,10 @@
+{
+  "dropMeApp": {
+    "ERole": {
+      "null": "",
+      "SUPERADMIN": "SUPERADMIN",
+      "ADMIN": "ADMIN",
+      "MODERATOR": "MODERATOR"
+    }
+  }
+}

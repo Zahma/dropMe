@@ -1,0 +1,36 @@
+{
+    "name": "Conversation",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "chat",
+            "otherEntityRelationshipName": "conversation",
+            "relationshipName": "chat"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "trip",
+            "otherEntityRelationshipName": "conversation",
+            "relationshipName": "trip",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "truck",
+            "otherEntityRelationshipName": "conversation",
+            "relationshipName": "truck",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200212173400",
+    "entityTableName": "conversation",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

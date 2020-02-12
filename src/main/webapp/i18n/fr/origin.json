@@ -1,0 +1,23 @@
+{
+  "dropMeApp": {
+    "origin": {
+      "home": {
+        "title": "Origins",
+        "createLabel": "Créer un nouveau Origin",
+        "createOrEditLabel": "Créer ou éditer un Origin",
+        "notFound": "Aucun Origin trouvé"
+      },
+      "created": "Un nouveau Origin a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Origin avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Origin avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Origin {{ id }} ?"
+      },
+      "detail": {
+        "title": "Origin"
+      },
+      "location": "Location",
+      "trip": "Trip"
+    }
+  }
+}

@@ -14,6 +14,30 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172200_added_entity_TransporterAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172300_added_entity_Reputation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172400_added_entity_ClientAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172500_added_entity_Origin.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172600_added_entity_Destination.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172700_added_entity_Trip.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172800_added_entity_Chat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172900_added_entity_Truck.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173000_added_entity_Driver.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173100_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173200_added_entity_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173300_added_entity_Location.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173400_added_entity_Conversation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173500_added_entity_AdminAccount.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20200212172200_added_entity_constraints_TransporterAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172300_added_entity_constraints_Reputation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172400_added_entity_constraints_ClientAccount.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172700_added_entity_constraints_Trip.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172800_added_entity_constraints_Chat.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212172900_added_entity_constraints_Truck.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173200_added_entity_constraints_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173300_added_entity_constraints_Location.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173400_added_entity_constraints_Conversation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200212173500_added_entity_constraints_AdminAccount.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

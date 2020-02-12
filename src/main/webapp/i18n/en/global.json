@@ -7,6 +7,20 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "transporterAccount": "Transporter Account",
+        "reputation": "Reputation",
+        "clientAccount": "Client Account",
+        "origin": "Origin",
+        "destination": "Destination",
+        "trip": "Trip",
+        "chat": "Chat",
+        "truck": "Truck",
+        "driver": "Driver",
+        "region": "Region",
+        "country": "Country",
+        "location": "Location",
+        "conversation": "Conversation",
+        "adminAccount": "Admin Account",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

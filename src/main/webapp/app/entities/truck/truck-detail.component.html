@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="truck">
+            <h2><span jhiTranslate="dropMeApp.truck.detail.title">Truck</span> {{ truck.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="dropMeApp.truck.plateNumber">Plate Number</span></dt>
+                <dd>
+                    <span>{{ truck.plateNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.conteneurPlateNumber">Conteneur Plate Number</span></dt>
+                <dd>
+                    <span>{{ truck.conteneurPlateNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.type">Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'dropMeApp.ETruckType.' + truck.type }}">{{ truck.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.width">Width</span></dt>
+                <dd>
+                    <span>{{ truck.width }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.height">Height</span></dt>
+                <dd>
+                    <span>{{ truck.height }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.length">Length</span></dt>
+                <dd>
+                    <span>{{ truck.length }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.maxWeight">Max Weight</span></dt>
+                <dd>
+                    <span>{{ truck.maxWeight }}</span>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.driver">Driver</span></dt>
+                <dd>
+                    <div *ngIf="truck.driverId">
+                        <a [routerLink]="['/driver', truck.driverId, 'view']">{{ truck.driverId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.trip">Trip</span></dt>
+                <dd>
+                    <div *ngIf="truck.tripId">
+                        <a [routerLink]="['/trip', truck.tripId, 'view']">{{ truck.tripId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="dropMeApp.truck.transporterAccount">Transporter Account</span></dt>
+                <dd>
+                    <div *ngIf="truck.transporterAccountId">
+                        <a [routerLink]="['/transporter-account', truck.transporterAccountId, 'view']">{{ truck.transporterAccountId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/truck', truck.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{
+  "dropMeApp": {
+    "clientAccount": {
+      "home": {
+        "title": "ClientAccounts",
+        "createLabel": "Créer un nouveau Client Account",
+        "createOrEditLabel": "Créer ou éditer un Client Account",
+        "notFound": "Aucun Client Account trouvé"
+      },
+      "created": "Un nouveau Client Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Client Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Client Account avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Client Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Client Account"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "referredBy": "Referred By",
+      "referal": "Referal",
+      "activated": "Activated",
+      "user": "User",
+      "reputation": "Reputation",
+      "trip": "Trip"
+    }
+  }
+}

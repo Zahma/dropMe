@@ -1,401 +1,154 @@
-/**
- * The different states a delivery can be.
- *
- * A delivery can be in the DRAFT state, which can be viewed or edited
- * only by administrators, the TO_BE_PUBLISHED state, which can be viewed by SALES,
- * or the AVAILABLE state, which can be viewed by external clients.
- *
- * @author The FLV Portal team.
- */
- enum DeliveryState {
-    DRAFT,
-    TO_BE_PUBLISHED,
-    AVAILABLE
+entity TransporterAccount {
+	name String,
+    phone String,
+    patent Blob,
+    managerFName String,
+    managerLName String,
+    balance Integer,
+    insurance Blob,
+    referal String,
+    referedBy String,
+    activated Boolean
 }
 
-/**
- * The different types a pbi delivery can be.
- *
- * A pbiType can either be in published to web, generic, or tourism format
- *
- * @author The FLV Portal team.
- */
- enum PbiType {
-    PUBLISH_TO_WEB,
-    GENERIC,
-    CUSTOMIZED_TOURISM
+entity Reputation {
+	// Many to One with Provider
+    // Many to One with Demander
+	// Trip Load
+    // Use ETA to know if you can comment, and to close te comment
+	rate Integer required,
+    comment String
 }
 
-/**
- * The different states a study can be.
- *
- * A study can be in the DRAFT state, which can be viewed or edited
- * only by administrators. The IN_PROGRESS or AVAILABLE states can be viewed
- * by external clients.
- *
- * @author The FLV Portal team.
- */
-enum StudyState {
-    DRAFT,
-    IN_PROGRESS,
-    PENDING,
-    TERMINATED
+entity ClientAccount {
+    firstName String,
+    lastName String,
+    phone String,
+	id String, // (optional Id for physical person, RC for company)
+    referredBy String,
+    referal String,
+    activated Boolean
 }
 
-/**
- * The different rights (Spring Security roles) assignable to a FLV Portal Role
- *
- * @author The FLV Portal team.
- */
-enum EAuthority {
-    ROLE_MANAGE_USER,
-    ROLE_ACTIVATE_USER,
-    ROLE_ADMIN,
-    ROLE_SUPPORT,
-    ROLE_LINKED_TO_ALL_ORGANIZATIONS,
-    ROLE_LINKED_TO_ALL_GROUPS,
-    ROLE_USE_ADMIN_URL,
-    ROLE_ACCESS_ADMINISTRATIVE_INFOS,
-    ROLE_MANAGE_ORGANIZATIONS_AND_OFFERS,
-    ROLE_MANAGE_GROUPS,
-    ROLE_MANAGE_STUDIES,
-    ROLE_MANAGE_OTHER_ENTITIES,
-    ROLE_SEE_DRAFTS,
-    ROLE_USER,
-    ROLE_VALIDATE_CGU,
-    ROLE_NEEDS_CGU_VALIDATION,
-    ROLE_EXPERIMENTAL,
-    ROLE_MANAGE_DELIVERIES,
-    ROLE_MANAGE_CREDITS,
-    ROLE_VALIDATE_CREDIT_REQUEST,
-    ROLE_MANAGE_CREDIT_REQUEST,
-    ROLE_ANONYMOUS
+entity Origin {
+// related one to one with Location
 }
 
-/**
- * The roles (in a FLV Portal way) assignable to a user. Those meta-roles are just a
- * collection of rights (which are true Spring Security roles) which are bulk-assigned
- * to the user.
- *
- * @author The FLV Portal team.
- */
-enum ERole {
-    FLV_SYSADMIN,
-    FLV_ADMIN,
-    FLV_ADMIN_EXPERIMENTAL,
-    SUPPORT_L2,
-    SUPPORT_L1,
-    SALES_MGR,
-    SALES,
-    EXT_MASTER,
-    EXT_REGULAR,
-    EXT_BASIC,
+entity Destination {
+// related one to one with Location
+}
+
+entity Trip {
+    isFull Boolean required, //
+    width Integer,
+    height Integer,
+    length Integer,
+    weight Integer,
+    marchandise EMarchandise required, // type of marchandise
+    etd ZonedDateTime required,
+    description String, // What are you transporting !
+    state ETripState, // Matched, Finised, In progress
+    eta ZonedDateTime,
+	distance Integer required
+}
+
+enum EMarchandise {
+	VEGETABLES,
+    RAW_MATERIAL,
+    FISH,
     OTHER
 }
 
-/**
- * The different states of zone. These are exactly all the same states as in Business Enabler
- *
- * @author The FLV Portal team.
-*/
-enum EZoneState{
-	EXPIRED,
-    PARTIAL,
-    FAILURE,
-    STATIC,
-    ARCHIVED,
-    NEW,
+enum ETripState {
+	FINISHED,
+	ACTIVATED,
     IN_PROGRESS,
-    COMPLETED
+    MATCHED
 }
 
-enum ECreditConsumptionState{
-	SENT,
-    IN_PROGRESS,
-    VALIDATED,
-    CANCELLED
+enum ETruckType {
+	DOMESTIC,
+    EXPORT
 }
 
-enum EZoneType {
-	IRIS,
-    CUSTOM
+entity Chat {
+	// Trip Owner
+    // Truck Owner
+    text String,
+    date Instant
 }
 
-enum EStudyDuration {
-	ONEWEEK,
-    ONEMONTH,
-    THREEMONTHS,
-    SIXMONTHS,
-    ONEYEAR
+entity Truck {
+	plateNumber String,
+    conteneurPlateNumber String,
+    type ETruckType,
+    width Integer,
+    height Integer,
+    length Integer,    
+    maxWeight Integer
 }
 
-enum EDeliveryType {
-	POWERBI,
-    FTP
+entity Driver {
+   // Relation one to one with truck
+   firstName String,
+   lastName String,
+   currentCoordinate String
 }
 
-enum ECreditOperation {
-	CREATION,
-    CONSUMPTION,
-    CANCELLATION,
-	ASSIGNMENT,
-	VALIDATION,
-	UPDATE
+entity Region {
+	regionName String
 }
 
-// ManyToOne : Credit{creditOrdering(refCougar)} to CreditOrdering
-entity Credit (credit) {
-	zoneType EZoneType,
-    studyDuration EStudyDuration,
-    deliveryType EDeliveryType,
-    numberOfZones Long,
-    expirationDate LocalDate
+entity Country {
+	countryName String
 }
 
-// ManyToOne : CreditOrdering{organization(name)} to Organization
-// ManyToOne : CreditOrdering{offer(name)} to Offer
-entity CreditOrdering (creditOrdering) {
-    refcougar String maxlength(50),
-    orderingDate LocalDate
+
+entity Location {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
 }
 
-// ManyToOne : CreditConsumption{credit} to Credit
-// ManyToOne : CreditConsumption{validator(login)} to User
-// ManyToOne : CreditConsumption{study} to Study
-// ManyToOne : CreditConsumption{study} to Study
-entity CreditConsumption (creditConsumption) {
-    numberOfConsumedZones Long,
-    status ECreditConsumptionState
+entity Conversation {
+
 }
 
-/**
- * Organizations can be classified by their activity :
- * tourism, transport, retail, geomarketing.
- *
- * @author The FLV Portal team.
- */
-entity Activity {
-    name String maxlength(50) required
+entity AdminAccount{
+	role ERole
 }
 
-/**
- * This is the list of authorities (rights) assigned to a role.
- *
- * @author The FLV Portal team.
- */
-entity RightsMatrix {
-    role ERole,
-    authority EAuthority
-}
-
-/**
- * Countries are designated by their names, and can have a specific URL and email
- * for the support, which will be used in the activation mails, and in the footer (frontend).
- *
- * @author The FLV Portal team.
- */
-entity Country (country){
-    name String maxlength(50) required,
-    url String maxlength(150),
-    emailSupport String maxlength(150)
-}
-
-/**
- * Deliveries are what the portal was made for :)
- *
- * When a client requests a study for his organization, the results of the study
- * are gathered in one or several deliveries, based on the duration of the study.
- *
- * The delivery consists in a PowerBI report (only a token for now), and some files
- * stored on a shared NFS location
- *
- * @author The FLV Portal team.
- */
-entity Delivery {
-    name String maxlength(50) required,
-    pbiToken String maxlength(255),
-    pbiReportId String maxlength(70),
-    pbiGroupId String maxlength(70),
-    ftpPathFiles String maxlength(255),
-    ftpServer String maxlength(255),
-    ftpLogin String maxlength(70),
-    ftpPwd String maxlength(70),
-    coderef String maxlength(50),
-    status DeliveryState,
-    pbiType PbiType,
-    nextDelivery LocalDate,
-    deleted Boolean
-}
-
-/**
- * The commercial label of an offer, which will be the only offer shown to customers,
- *
- * @author The FLV Portal team.
- */
-entity Offer {
-    name String maxlength(50)
-}
-
-entity OfferOptions (offerOptions) {
-	name String maxlength(50),
-	activated Boolean
-}
-
-/**
- * The technical object of an offer mapped over BE offers, one commercial offer corresponds to one technical offer
- *
- * @author The FLV Portal team.
- */
-entity BeOffer {
-	beId Long,
-    beName String maxlength(50),
-    beOptionList String maxlength(50)
-}
-
-/**
- * BeOfferPartitioning specifies options, partitioningType and partitioningMode corresponding to BeOffer
- *
- * @author The FLV Portal team.
- */
-entity BeOfferPartitioning (beOfferPartitioning) {
-	beId Long,
-    beName String maxlength(50),
-    beOption String maxlength(50),
-    bePartitioningType String maxlength(50),
-    beOfferPartitioningMode String maxlength(150)
-}
-
-/**
- * An organization materializes the client, and regroups its users, studies, etc.
- *
- * @author The FLV Portal team.
- */
-entity Organization (organization) {
-    name String maxlength(50) required,
-    coderef String maxlength(4) required,
-    cguValider String maxlength(150),
-    cguValidationDate LocalDate,
-    deleted Boolean
-}
-
-/**
- * A study is requested by the client. It consists generally in a zone,
- * beginning and end dates, and a status (DRAFT, IN_PROGRESS, TERMINATED).
- * A study contains several deliveries.
- *
- * @author The FLV Portal team.
- */
-entity Study (study) {
-    name String maxlength(50) required,
-    beId Long,
-    observationPeriodStart LocalDate,
-    observationPeriodEnd LocalDate,
-	orderingDate LocalDate,
-    status StudyState,
-    coderef String maxlength(50),
-    refcougar String maxlength(50),
-    deleted Boolean
-}
-/**
- *
- *
- * @author The FLV Portal team.
- */
-entity StudyPartitioning (studyPartitioning) {
-    name String maxlength(50) required
-}
-
-/**
- *
- *
- * @author The FLV Portal team.
- */
-entity Zone (zone){
-	name String maxlength(50) required,
-    beId Long,
-    description String maxlength(50),
-    creationDate LocalDate,
-    bePartitioningType String maxlength(50),
-    status EZoneState
-}
-/**
- *
- *
- * @author The FLV Portal team.
- */
-entity InfraZone (infraZone) {
-    name String maxlength(50),
-    beLocalisant Integer,
-    geojson TextBlob
-}
-/**
- *
- *
- * @author The FLV Portal team.
- */
-entity CandidateZone (candidateZone) {
-	beOfferPartitioningMode String maxlength(150),
-    geojson TextBlob
-}
-/**
- * Unused for now
- *
- * @author The FLV Portal team.
- */
-entity Subgroup (Subgroup) {
-    name String maxlength(50) required,
-    deleted Boolean
-}
-
-/**
- * Additional infos requested for a user account (we don't want to mess with
- * the JHipster User model)
- *
- * @author The FLV Portal team.
- */
-entity UserAdditionalInfo {
-    telephone1 String maxlength(50),
-    telephone2 String maxlength(50),
-    wishedOrganization String maxlength(50),
-    role ERole,
-    firstActivationDate LocalDate
-
+enum ERole {
+	SUPERADMIN,
+    ADMIN,
+    MODERATOR
 }
 
 relationship OneToOne {
-    UserAdditionalInfo{user(login) required} to User,
-    Offer{beOffer(beName)} to BeOffer,
-    Study{studyPartitioning(name)} to StudyPartitioning
+    ClientAccount{user(login) required} to User,
+    TransporterAccount{user(login) required} to User,
+    AdminAccount{user(login) required} to User,
+	Location to Origin,
+    Location to Destination,
+    Country{region} to Region,
+	Location{country} to Country,
+    Trip to Origin,
+    Trip to Destination,
+  //  Load to Truck,
+    Truck to Driver,
+    Truck to Trip
 }
 
-relationship ManyToOne {
-    Delivery{study(name) required} to Study,
-    Organization{activity(name) required} to Activity,
-    Organization{country(name) required} to Country,
-    Organization{commercialContact(login) required} to User,
-    Organization{oabContact(login) required} to User,
-    Offer{country(name)} to Country,
-    BeOffer{beOfferPartitioning(beName)} to BeOfferPartitioning,
-    Study{offer(name)} to Offer,
-    Study{group(name) required} to Subgroup,
-    Subgroup{organization(name) required} to Organization,
-    Zone{studyPartitioning(name)} to StudyPartitioning,
-    InfraZone{zone(name)} to Zone,
-    CandidateZone{infraZone(name)} to InfraZone,
-    OfferOptions{offer(name)} to Offer{offerOptions},
-    Credit{creditOrdering(refcougar)} to CreditOrdering{credits},
-    CreditOrdering{organization(name)} to Organization,
-    CreditOrdering{offer(name)} to Offer,
-    CreditConsumption{credit required} to Credit,
-    CreditConsumption{validator(login)} to User,
-    CreditConsumption{study required} to Study,
-    CreditConsumption{studyScope} to Study
-}
-
-relationship ManyToMany {
-    Organization{users(login)} to User,
-    Subgroup{users(login)} to User,
-    Credit{offerOptions(name)} to OfferOptions
+relationship OneToMany {
+	TransporterAccount to Truck,
+    TransporterAccount to Reputation,
+    ClientAccount to Reputation,
+    ClientAccount to Trip,
+    Trip to Conversation,
+    Truck to Conversation,
+   // Load to Trip,
+    Conversation to Chat
 }
 
 paginate all with pagination

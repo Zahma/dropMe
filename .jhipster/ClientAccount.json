@@ -1,0 +1,62 @@
+{
+    "name": "ClientAccount",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "referredBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "referal",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activated",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "clientAccount",
+            "relationshipValidateRules": "required",
+            "relationshipName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "reputation",
+            "otherEntityRelationshipName": "clientAccount",
+            "relationshipName": "reputation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "trip",
+            "otherEntityRelationshipName": "clientAccount",
+            "relationshipName": "trip"
+        }
+    ],
+    "changelogDate": "20200212172400",
+    "entityTableName": "client_account",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

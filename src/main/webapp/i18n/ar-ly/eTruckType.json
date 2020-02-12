@@ -1,0 +1,9 @@
+{
+  "dropMeApp": {
+    "ETruckType": {
+      "null": "",
+      "DOMESTIC": "DOMESTIC",
+      "EXPORT": "EXPORT"
+    }
+  }
+}

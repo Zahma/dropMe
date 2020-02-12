@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Truck.
+    -->
+    <changeSet id="20200212172900-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="driver_id"
+                                 baseTableName="truck"
+                                 constraintName="fk_truck_driver_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="driver"/>
+
+        <addForeignKeyConstraint baseColumnNames="trip_id"
+                                 baseTableName="truck"
+                                 constraintName="fk_truck_trip_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trip"/>
+
+        <addForeignKeyConstraint baseColumnNames="transporter_account_id"
+                                 baseTableName="truck"
+                                 constraintName="fk_truck_transporter_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="transporter_account"/>
+
+    </changeSet>
+</databaseChangeLog>

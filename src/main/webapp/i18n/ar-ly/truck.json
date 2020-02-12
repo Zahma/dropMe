@@ -1,0 +1,32 @@
+{
+  "dropMeApp": {
+    "truck": {
+      "home": {
+        "title": "Trucks",
+        "createLabel": "Create a new Truck",
+        "createOrEditLabel": "Create or edit a Truck",
+        "notFound": "No Trucks found"
+      },
+      "created": "A new Truck is created with identifier {{ param }}",
+      "updated": "A Truck is updated with identifier {{ param }}",
+      "deleted": "A Truck is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Truck {{ id }}?"
+      },
+      "detail": {
+        "title": "Truck"
+      },
+      "plateNumber": "Plate Number",
+      "conteneurPlateNumber": "Conteneur Plate Number",
+      "type": "Type",
+      "width": "Width",
+      "height": "Height",
+      "length": "Length",
+      "maxWeight": "Max Weight",
+      "driver": "Driver",
+      "trip": "Trip",
+      "conversation": "Conversation",
+      "transporterAccount": "Transporter Account"
+    }
+  }
+}
