@@ -1,12 +1,12 @@
+import { ICountry } from 'app/shared/model/country.model';
+
 export interface ILocation {
   id?: number;
   streetAddress?: string;
   postalCode?: string;
   city?: string;
   stateProvince?: string;
-  originId?: number;
-  destinationId?: number;
-  countryId?: number;
+  country?: ICountry;
 }
 
 export class Location implements ILocation {
@@ -16,8 +16,6 @@ export class Location implements ILocation {
     public postalCode?: string,
     public city?: string,
     public stateProvince?: string,
-    public originId?: number,
-    public destinationId?: number,
-    public countryId?: number
+    public country?: ICountry
   ) {}
 }

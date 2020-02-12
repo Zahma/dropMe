@@ -21,6 +21,11 @@
         "location": "Location",
         "conversation": "Conversation",
         "adminAccount": "Admin Account",
+        "department": "Department",
+        "task": "Task",
+        "employee": "Employee",
+        "job": "Job",
+        "jobHistory": "Job History",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

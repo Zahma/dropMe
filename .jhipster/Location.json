@@ -21,22 +21,6 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
-            "otherEntityName": "origin",
-            "otherEntityRelationshipName": "location",
-            "relationshipName": "origin",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "one-to-one",
-            "otherEntityName": "destination",
-            "otherEntityRelationshipName": "location",
-            "relationshipName": "destination",
-            "otherEntityField": "id",
-            "ownerSide": true
-        },
-        {
-            "relationshipType": "one-to-one",
             "otherEntityName": "country",
             "otherEntityRelationshipName": "location",
             "relationshipName": "country",
@@ -46,12 +30,13 @@
     ],
     "changelogDate": "20200212173300",
     "entityTableName": "location",
-    "dto": "mapstruct",
-    "pagination": "pagination",
-    "service": "serviceClass",
-    "jpaMetamodelFiltering": true,
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": "*",
+    "javadoc": "not an ignored comment"
 }

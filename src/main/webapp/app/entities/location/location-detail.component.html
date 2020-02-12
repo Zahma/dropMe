@@ -24,22 +24,10 @@
                 <dd>
                     <span>{{ location.stateProvince }}</span>
                 </dd>
-                <dt><span jhiTranslate="dropMeApp.location.origin">Origin</span></dt>
-                <dd>
-                    <div *ngIf="location.originId">
-                        <a [routerLink]="['/origin', location.originId, 'view']">{{ location.originId }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="dropMeApp.location.destination">Destination</span></dt>
-                <dd>
-                    <div *ngIf="location.destinationId">
-                        <a [routerLink]="['/destination', location.destinationId, 'view']">{{ location.destinationId }}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="dropMeApp.location.country">Country</span></dt>
                 <dd>
-                    <div *ngIf="location.countryId">
-                        <a [routerLink]="['/country', location.countryId, 'view']">{{ location.countryId }}</a>
+                    <div *ngIf="location.country">
+                        <a [routerLink]="['/country', location.country?.id, 'view']">{{ location.country?.id }}</a>
                     </div>
                 </dd>
             </dl>
